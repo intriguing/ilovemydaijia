@@ -256,9 +256,8 @@ public class DriverInfoActivity
     case R.id.star_rank_btn3: 
     case R.id.star_rank_btn4: 
     case R.id.star_rank_btn5: */
-    case R.id.back_btn: Intent tintent = new Intent(this, MainActivity.class);
-    startActivity(tintent);break;
-   /* case R.id.location_btn:     Intent tintentg = new Intent(this, DriverLocationViewActivity.class);
+    case R.id.back_btn: this.finish();break;
+   /*case R.id.location_btn:     Intent tintentg = new Intent(this, DriverLocationViewActivity.class);
     tintentg.putExtra("DRIVER_INFO", this.driver);
     startActivity(tintentg);break;*/
     case R.id.call_btn: if(StringUtils.isNullOrEmpty(this.mobile)){
