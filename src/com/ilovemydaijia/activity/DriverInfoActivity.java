@@ -28,7 +28,6 @@ import org.apache.http.message.BasicNameValuePair;
 
 import com.daija.BaseActivity;
 import com.daija.models.DriverInfo;
-import com.daija.ui.PullToRefreshListView;
 import com.daijia.net.JSONCallBack;
 import com.daijia.net.JSONService;
 import com.daijia.net.JSONServiceImpl;
@@ -54,7 +53,6 @@ public class DriverInfoActivity
   private TextView distanceTv;
   private DriverInfo driver;
   private EditText driverCommentEt;
-  private PullToRefreshListView driverCommentList;
   private TextView drivingYearsTv;
   private View footerView;
   private ImageView headView;
@@ -258,7 +256,7 @@ public class DriverInfoActivity
     case R.id.star_rank_btn5: */
     case R.id.back_btn: this.finish();break;
     case R.id.location_btn:     Intent tintentg = new Intent(this, DriverLocationViewActivity.class);
-    tintentg.putExtra("DRIVER_INFO", this.driver);
+     tintentg.putExtra("DRIVER_INFO", this.driver);
     startActivity(tintentg);break;
     case R.id.call_btn: 
     	if(!StringUtils.isNullOrEmpty(this.mobile)){

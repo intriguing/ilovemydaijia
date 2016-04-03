@@ -326,7 +326,7 @@ protected void onCreate(Bundle paramBundle)
 public void onClick(View v) {
 	// TODO Auto-generated method stub
 	 switch (v.getId()){
-	/* case R.id.gas_station_btn:  
+/*	 case R.id.gas_station_btn:  
      Intent paramView = new Intent(this, LBSActivity.class);
      paramView.putExtra("POI_TYPE", 1);
      startActivity(paramView);

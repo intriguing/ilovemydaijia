@@ -251,10 +251,10 @@ public class DriverLocationViewActivity extends Activity implements
 			} else {
 				bitmapg = DriverLocationViewActivity.this.icDriverOffline;
 			}
-			int i = mapView.getWidth() / 2;
-			int j = mapView.getHeight() / 2;
-			this.geoPoint = new GeoPoint(paramDriverInfo.getPointY() - i,
-					paramDriverInfo.getPointX() - j);
+			int i = bitmapg.getWidth() / 2;
+			int j = bitmapg.getHeight() / 2;
+			this.geoPoint = new GeoPoint(paramDriverInfo.getPointX() - i,
+					paramDriverInfo.getPointY() - j);
 			this.overlayItem = new OverlayItem(this.geoPoint, "xx", "xx");
 			this.overlayItem.setMarker(new BitmapDrawable(bitmapg));
 		}
