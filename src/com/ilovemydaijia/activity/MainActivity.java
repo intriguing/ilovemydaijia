@@ -110,7 +110,7 @@ public class MainActivity extends Activity
 	  private View driverPointPopView;
 	  private TextView popDriverNameTv;
 	  private TextView popDriverYearsTv;
-	  private LinearLayout popDriverStarWarp;
+/*	  private LinearLayout popDriverStarWarp;*/
 	  private Bitmap bitmap;
 	  private SimpleAdapter simpleAdapter;
 	  private Drawable driverMarker;
@@ -200,7 +200,7 @@ protected void onCreate(Bundle paramBundle)
     this.driverPointPopView = getLayoutInflater().inflate(R.layout.driver_point_pop_view, null);
     this.popDriverNameTv = ((TextView)this.driverPointPopView.findViewById(R.id.pop_driver_name_tv));
     this.popDriverYearsTv = ((TextView)this.driverPointPopView.findViewById(R.id.pop_driver_years_tv));
-    this.popDriverStarWarp = ((LinearLayout)this.driverPointPopView.findViewById(R.id.pop_driver_star_warp));
+ /*   this.popDriverStarWarp = ((LinearLayout)this.driverPointPopView.findViewById(R.id.pop_driver_star_warp));*/
     this.driverPointPopView.setVisibility(8);
     this.driverPointPopView.setClickable(true);
     this.mapView.removeView(this.driverPointPopView);
@@ -286,24 +286,29 @@ protected void onCreate(Bundle paramBundle)
 			}
 		}
 	}
+  @Override
   protected void onDestroy()
   {
+	  mLocClient.stop();
+      // 关闭定位图层
 	mapView.destroy();
     super.onDestroy();
   }
 
-  
   protected void onPause()
   {
+	  mapView.setVisibility(View.INVISIBLE);
+	  mLocClient.stop();
 	mapView.onPause();
-    MobclickAgent.onPause(this);
+    //MobclickAgent.onPause(this);
     super.onPause();
   }
   
   protected void onResume()
   {
+    mapView.setVisibility(View.VISIBLE);	 
 	mapView.onResume();
-    MobclickAgent.onResume(this);
+    //MobclickAgent.onResume(this);
     super.onResume();
   }
   
@@ -411,7 +416,7 @@ public void searchDriver(LocationData paramLocation)
         if (MainActivity.this.driverLocationOverlay != null) {
           MainActivity.this.mapView.getOverlays().remove(MainActivity.this.driverLocationOverlay);
         }
-        MainActivity.this.driverLocationOverlay = new MainActivity.DriverLocationOverlay(MainActivity.this.mapView, MainActivity.this.driverMarker, MainActivity.this.nearDrivers,MainActivity.this);
+        MainActivity.this.driverLocationOverlay = new MainActivity.DriverLocationOverlay(MainActivity.this.mapView, MainActivity.this.driverMarker, MainActivity.this.nearDrivers);
         MainActivity.this.driverLocationOverlay.addItem(MainActivity.this.driverLocationOverlay.mGeoList);
         MainActivity.this.mapView.getOverlays().add(MainActivity.this.driverLocationOverlay);
         MainActivity.this.mapView.invalidate();
@@ -433,7 +438,7 @@ private List<DriverInfo> drivers = new ArrayList<DriverInfo>();
 public List<OverlayItem> mGeoList =null ;
 
 @SuppressWarnings("deprecation")
-public DriverLocationOverlay(MapView mapView,Drawable marker,List<DriverInfo> paramList,Context context)
+public DriverLocationOverlay(MapView mapView,Drawable marker,List<DriverInfo> paramList)
 {
   super(marker, mapView);
   mGeoList=new ArrayList<OverlayItem>();
@@ -474,7 +479,7 @@ protected boolean onTap(int paramInt)
   final DriverInfo localDriverInfo = (DriverInfo)this.drivers.get(paramInt);
     MainActivity.this.popDriverNameTv.setText(localDriverInfo.getName());
     MainActivity.this.popDriverYearsTv.setText("驾龄：" + localDriverInfo.getDrivingYears());
-    MainActivity.this.popDriverStarWarp.removeAllViews();
+    //MainActivity.this.popDriverStarWarp.removeAllViews();
       MainActivity.this.mapView.updateViewLayout(MainActivity.this.driverPointPopView, new MapView.LayoutParams(-2, -2, localOverlayItem.getPoint(), 81));
       MainActivity.this.driverPointPopView.setOnClickListener(new View.OnClickListener()
       {
@@ -493,7 +498,7 @@ protected boolean onTap(int paramInt)
       if(localDriverInfo.getStatus()==2){
       MainActivity.this.driverPointPopView.setBackgroundResource(R.drawable.state_busy_bg);return true;}
     ImageView localImageView = MainActivity.this.createStarView();
-    MainActivity.this.popDriverStarWarp.addView(localImageView);
+/*    MainActivity.this.popDriverStarWarp.addView(localImageView);*/
     LinearLayout.LayoutParams localLayoutParams = (LinearLayout.LayoutParams)localImageView.getLayoutParams();
     localLayoutParams.gravity = 16;
     localImageView.setLayoutParams(localLayoutParams);

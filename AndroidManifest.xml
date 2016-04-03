@@ -27,6 +27,7 @@
         <activity android:name="com.ilovemydaijia.activity.LoginActivity" />
         <activity android:name="com.ilovemydaijia.activity.MainActivity" />
         <activity android:name="com.ilovemydaijia.activity.DriverInfoActivity"/>
+        <activity android:hardwareAccelerated="false" android:name="com.ilovemydaijia.activity.DriverLocationViewActivity"/>
         <!-- <activity android:name="com.daija.ILoveMyCarApp"/> -->
         <service
             android:name="com.baidu.location.f"
